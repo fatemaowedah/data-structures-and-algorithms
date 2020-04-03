@@ -30,9 +30,15 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
-  let arra = /\b[A-Z]\w*/g;
-  let check = arra.match(str);
-  return check;
+  let array = [];
+  let arra = /[A-Z]\w*/g;
+  array = str.match(arra);
+  if (array){
+    return array;
+  }
+else{
+  return [];
+}
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -40,11 +46,25 @@ CHALLENGE 3
 
 Write a function named citiesAtoJ that takes in an array of city names and uses a regular expression pattern to return a new array containing any cities that begin with the letters A through J, inclusive.
 ------------------------------------------------------------------------------------------------ */
-
+// array = ['Amma ff']
 const citiesAtoJ = (arr) => {
   // Solution code here...
-};
-
+  let array = [];
+  let str='';
+  let arra = /^[A-J]\w*/g;
+  arr.forEach(val =>{
+    array = val.match(arra);
+    if(array){
+    str = str + ',' + array.toString();}
+  }) 
+  if (str){
+    let lastArray = str.split(',');
+    return lastArray.splice(1,lastArray.length);
+  }
+else{
+  return [];
+}
+}
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
@@ -55,10 +75,12 @@ Write a function named matchMonth which uses a regular expression pattern to mat
 If the user enters any of these four inputs, return true. For any other input, return false.
 
 Do not use the vertical bar (pipe) in your pattern.
------------------------------------------------------------------------------------------------- */
-
+------------------------------------------------------------------------------------------------ *//([Oo]ct)(ober)\*/ 
 const matchMonth = (input) => {
   // Solution code here...
+  let arra = /^([Oo]ct)(ober)?$/g;
+  return arra.test(input);
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -73,6 +95,15 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = str => {
   // Solution code here...
+  let array = [];
+  let arra = /\b\w*\s/g;
+  array = str.match(arra);
+  if (array){
+    return array;
+  }
+else{
+  return [];
+}
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -89,6 +120,8 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
+  let arra = /[aeiou]/gi;
+  return str.replace(arra,'_');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -105,6 +138,15 @@ const seashells = 'She sells seashells by the seashore. The shells she sells are
 
 const findShells = (str) => {
   // Solution code here...
+  let array = [];
+  let arra = /\w+(ells)/g;
+  array = str.match(arra);
+  if (array){
+    return array;
+  }
+else{
+  return [];
+}
 };
 
 /* ------------------------------------------------------------------------------------------------
