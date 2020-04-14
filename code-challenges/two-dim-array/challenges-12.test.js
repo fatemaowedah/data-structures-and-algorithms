@@ -24,6 +24,15 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  let newarray = [];
+  for (let j = 0; j < hoursOpen.length; j++) {
+    let hourlySales = 0;
+    for (let i = 0; i < stores.length; i++) {
+      hourlySales = hourlySales + stores[i][j];
+    }
+    newarray.push(hourlySales);
+  }
+  return newarray;
 
 };
 
@@ -39,6 +48,15 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  const newarray = [];
+  data.forEach((sumCookies, iterate) => {
+    newarray.push({
+      sales: sumCookies + ' cookies',
+      time: hours[iterate]
+    });
+
+  });
+  return newarray;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -48,19 +66,23 @@ Write a function named howManyTreats that will return the quantity of treats you
 ------------------------------------------------------------------------------------------------ */
 
 const errands = [
-  { store: 'Grocery store',
-    items: [ { name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
+  {
+    store: 'Grocery store',
+    items: [{ name: 'Eggs', quantity: 12 }, { name: 'Milk', quantity: 1 }, { name: 'Apples', quantity: 3 }]
   },
-  { store: 'Drug store',
-    items: [ { name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash',quantity: 1 } ]
+  {
+    store: 'Drug store',
+    items: [{ name: 'Toothpaste', quantity: 1 }, { name: 'Toothbrush', quantity: 3 }, { name: 'Mouthwash', quantity: 1 }]
   },
-  { store: 'Pet store',
-    items: [ { name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 } ]
+  {
+    store: 'Pet store',
+    items: [{ name: 'Cans of food', quantity: 8 }, { name: 'Treats', quantity: 24 }, { name: 'Leash', quantity: 1 }]
   }
 ];
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  return arr[2].items[1].quantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,6 +105,12 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
+  if (board[row][col] === '#'){
+    return 'hit';
+  }
+  else if (board[row][col] === ' '){
+    return 'miss';
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -95,6 +123,13 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  let num = 1;
+  numbers.forEach(value =>{
+    value.forEach(val =>{
+      num = num * val;
+    });
+  });
+  return num;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -115,6 +150,17 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
+  const { count, sum }  = weather
+  .reduce((acc, val) => {
+      acc = acc.concat(val);
+      return acc;
+  }, [])
+  .reduce((acc, val) => {
+     acc.count++;
+      acc.sum += val
+      return acc;
+  }, { count: 0, sum: 0 });
+return sum / count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -136,6 +182,19 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  const averageTemps = weather.map(week => {
+    const { count, sum } = week
+    .reduce(
+      (acc, val) => {
+        acc.count++;
+        acc.sum += val;
+        return acc;
+      },
+      { count: 0, sum: 0 }
+    );
+    return sum / count;
+  });
+  return Math.min(...averageTemps);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -151,7 +210,13 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+  // Solution code here...'const makeRows = str.split('\n');
+  const makeRows = str.split('\n');
+  return makeRows.map(row => {
+    const num = row.split(',');
+    return num.reduce((acc, val) => 
+    acc + parseInt(val), 0);
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -221,14 +286,14 @@ describe('Testing challenge 4', () => {
 
 describe('Testing challenge 5', () => {
   test('It should multiply all the numbers together', () => {
-    expect(calculateProduct([[1,2], [3,4], [5,6]])).toStrictEqual(720);
+    expect(calculateProduct([[1, 2], [3, 4], [5, 6]])).toStrictEqual(720);
   });
 
   test('It should return zero if there are any zeroes in the data', () => {
     expect(calculateProduct([[2, 3, 4, 6, 0], [4, 3, 7], [2, 4, 6]])).toStrictEqual(0);
   });
   test('It should work even if some of the arrays contain no numbers', () => {
-    expect(calculateProduct([[1,2], [], [3,4,5]])).toStrictEqual(120);
+    expect(calculateProduct([[1, 2], [], [3, 4, 5]])).toStrictEqual(120);
   });
 });
 
