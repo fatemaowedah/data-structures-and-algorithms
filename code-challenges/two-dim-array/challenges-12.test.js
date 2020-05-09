@@ -105,10 +105,10 @@ The top row of the board is considered row zero and row numbers increase as they
 
 const battleship = (board, row, col) => {
   //  Solution code here...
-  if (board[row][col] === '#'){
+  if (board[row][col] === '#') {
     return 'hit';
   }
-  else if (board[row][col] === ' '){
+  else if (board[row][col] === ' ') {
     return 'miss';
   }
 };
@@ -124,8 +124,8 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 const calculateProduct = (numbers) => {
   // Solution code here...
   let num = 1;
-  numbers.forEach(value =>{
-    value.forEach(val =>{
+  numbers.forEach(value => {
+    value.forEach(val => {
       num = num * val;
     });
   });
@@ -150,17 +150,17 @@ const weeklyTemperatures = [
 
 const averageDailyTemperature = (weather) => {
   // Solution code here...
-  const { count, sum }  = weather
-  .reduce((acc, val) => {
+  const { count, sum } = weather
+    .reduce((acc, val) => {
       acc = acc.concat(val);
       return acc;
-  }, [])
-  .reduce((acc, val) => {
-     acc.count++;
+    }, [])
+    .reduce((acc, val) => {
+      acc.count++;
       acc.sum += val
       return acc;
-  }, { count: 0, sum: 0 });
-return sum / count;
+    }, { count: 0, sum: 0 });
+  return sum / count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -184,14 +184,14 @@ const lowestWeeklyAverage = (weather) => {
   // Solution code here...
   const averageTemps = weather.map(week => {
     const { count, sum } = week
-    .reduce(
-      (acc, val) => {
-        acc.count++;
-        acc.sum += val;
-        return acc;
-      },
-      { count: 0, sum: 0 }
-    );
+      .reduce(
+        (acc, val) => {
+          acc.count++;
+          acc.sum += val;
+          return acc;
+        },
+        { count: 0, sum: 0 }
+      );
     return sum / count;
   });
   return Math.min(...averageTemps);
@@ -214,8 +214,8 @@ const excel = (str) => {
   const makeRows = str.split('\n');
   return makeRows.map(row => {
     const num = row.split(',');
-    return num.reduce((acc, val) => 
-    acc + parseInt(val), 0);
+    return num.reduce((acc, val) =>
+      acc + parseInt(val), 0);
   });
 };
 

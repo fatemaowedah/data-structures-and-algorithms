@@ -96,10 +96,10 @@ const hasChildrenValues = (arr, character) => {
     // Solution code here...
     for (let i = 0; i < arr.length; i++) {
         if (Object.values(arr)[i].name === character && Object.values(arr)[i].children.length > 0) {
-          return true;
+            return true;
         }
-      }
-      return false;
+    }
+    return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,14 +112,14 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
     // Solution code here...
-    let bool =false;
-    arr.forEach(house =>{
-      Object.entries(house).forEach(val =>{
-        if(val[1] === character){
-          if(house.children.length)
-          bool=true ;
-        }
-      });
+    let bool = false;
+    arr.forEach(house => {
+        Object.entries(house).forEach(val => {
+            if (val[1] === character) {
+                if (house.children.length)
+                    bool = true;
+            }
+        });
     });
     return bool;
 };
@@ -155,6 +155,12 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 const houseSize = (arr) => {
     const sizes = [];
     // Solution code here...
+    arr.forEach(element => {
+        const house = element.house;
+        let members = 1 + element.children.length;
+        members += element.spouse ? 1 : 0;
+        sizes.push({ house, members });
+    });
     return sizes;
 };
 
@@ -179,6 +185,16 @@ const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 const houseSurvivors = (arr) => {
     const survivors = [];
     // Solution code here...
+    let countt = 0;
+    arr.forEach(val => {
+        let count = val.children.length;
+        countt = 1 + count + countt;
+        survivors.push({
+            house: val.house,
+            members: countt
+        })
+        countt = 0;
+    })
     return survivors;
 };
 

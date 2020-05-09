@@ -165,6 +165,22 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  let ans = false;
+  board.forEach((e, idx) => {
+    ans = ans || helpCheck(idx, 0, idx, 1, idx, 2);
+    ans = ans || helpCheck(0, idx, 1, idx, 2, idx) 
+    if (helpCheck(idx, 0, idx, 1, idx, 2)) {
+      if (board[idx][0] === '') {
+        ans = false;
+      }
+    }
+  });
+  ans = ans || helpCheck(0, 0, 1, 1, 2, 2) 
+  ans = ans || helpCheck(0, 2, 1, 1, 2, 0) 
+  return ans;
+  function helpCheck(row1, col1, row2, col2, row3, col3) {
+    return (board[row1][col1] === board[row2][col2] && board[row2][col2] === board[row3][col3]);
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
