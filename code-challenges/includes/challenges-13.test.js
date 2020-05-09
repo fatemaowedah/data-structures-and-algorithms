@@ -174,6 +174,15 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 
 const sortByDay = (arr) => {
   // Solution code here...
+  return daysOfWeek.map(day => {
+    const events = [];
+    arr.forEach(event => {
+      if (event.includes(day)) {
+        events.push(event);
+      }
+    });
+    return events;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -186,6 +195,8 @@ For example, ['abcd', 'efgh', 'ijkl', 'mnop'] returns ['a', 'f', 'k', 'p']
 
 const characterByIndex = (arr) => {
   // Solution code here...
+  return arr.map((value, i) => 
+    value.charAt(i));
 };
 
 /* ------------------------------------------------------------------------------------------------

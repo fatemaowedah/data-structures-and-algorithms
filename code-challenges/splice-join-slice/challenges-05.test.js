@@ -191,12 +191,14 @@ Write a function named totalSumCSV that, given a string of comma-separated value
 ------------------------------------------------------------------------------------------------ */
 
 const totalSumCSV = (str) => {
-  let total = 0;
   // Solution code here...
+  let total = 0;
+  let array = str.split(',');
+  array.forEach(val =>{
+    total = Math.floor(val) + total;
+  })
   return total;
 };
-
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 9 - Stretch Goal
 
@@ -207,6 +209,15 @@ For example, removeVowels('gregor') returns 'grgr'.
 
 const removeVowels = (str) => {
   // Solution code here...
+  const splitsr = str.split('');
+    const vowel = 'aeiou';
+    for (let i = 0; i < splitsr.length; i++) {
+      if (vowel.includes(splitsr[i])) {
+        splitsr.splice(i, 1);
+        i--;
+      }
+    }
+    return splitsr.join('');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -221,6 +232,23 @@ Similarly, extractVowels('The quick brown fox') returns ['Th qck brwn fx', 'eioo
 
 const extractVowels = (str) => {
   // Solution code here...
+  const vowelArray = ['e','i','o','u','a'];
+  let stringArray = [];
+  let finalArray = [];
+  let vowel = '';
+  for (let i=0; i < str.length; i++){
+    stringArray.push(str[i]);
+  }
+  vowelArray.forEach(val =>{
+    stringArray.forEach((value) =>{
+      if(val === value){
+        vowel = vowel + value;
+        stringArray.splice(stringArray.indexOf(val),1);
+      }}
+    )})
+  finalArray.push(stringArray.join(''));
+  finalArray.push(vowel);
+  return finalArray;
 };
 
 /* ------------------------------------------------------------------------------------------------
